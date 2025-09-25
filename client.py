@@ -6,11 +6,11 @@ def test_url(url_to_test):
     """
     Sends a URL to the prediction API and prints the result.
     """
-    api_url = 'phishing-detection-production-983e.up.railway.app/predict'
-    payload = {'url': url_to_test}
+    api_url = 'https://phishing-detection-production-983e.up.railway.app/predict'
+    params = {'url': url_to_test}
     
     try:
-        response = requests.post(api_url, json=payload)
+        response = requests.get(api_url, params=params)
         response.raise_for_status()  # Raise an exception for bad status codes
         
         print(f"Testing URL: {url_to_test}")

@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
 import joblib
 import whois
 import requests
@@ -124,19 +123,17 @@ except FileNotFoundError:
     print("Model file 'app/model.joblib' not found.")
     sys.exit(1)
 
-class URLData(BaseModel):
-    url: str
 
 @app.get('/')
 def read_root():
     return {'message': 'Phishing URL Detection API'}
 
-@app.post('/predict')
-def predict_url_endpoint(data: URLData):
+@app.get('/predict')
+def predict_url_endpoint(url: str):
     """
     Predicts if a URL is a phishing URL and returns the label and confidence score.
     """
-    test_url = data.url
+    test_url = url
     
     if not test_url.startswith('http'):
         test_url = 'https://' + test_url
