@@ -6,7 +6,7 @@ def test_url(url_to_test):
     """
     Sends a URL to the prediction API and prints the result.
     """
-    api_url = 'http://localhost:8000/predict'
+    api_url = 'phishing-detection-production-983e.up.railway.app/predict'
     payload = {'url': url_to_test}
     
     try:
@@ -23,25 +23,10 @@ def test_url(url_to_test):
         print("Please ensure the Docker container is running and accessible at", api_url)
 
 if __name__ == "__main__":
-    # Example URLs to test
-    urls = [
-        "google.com",
-        "youtube.com",
-        "facebook.com",
-        "this-is-a-very-long-url-to-test-the-length-feature.com",
-        "http://123.45.67.89/login",
-        "example.com/path/with//double-slash",
-        "some-site-with-prefix.com",
-        "sub.domain.example.com",
-        "bit.ly/shortened-url",
-        "unsafe-site.com" # A generic potentially unsafe site
-    ]
+    if len(sys.argv) < 2:
+        print("Usage: python client.py <url1> <url2> ...")
+        sys.exit(1)
 
-    # You can also provide a URL as a command-line argument
-    if len(sys.argv) > 1:
-        urls_to_test = sys.argv[1:]
-    else:
-        urls_to_test = urls
-
+    urls_to_test = sys.argv[1:]
     for url in urls_to_test:
         test_url(url)
