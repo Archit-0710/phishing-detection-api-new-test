@@ -6,7 +6,7 @@ def test_url(url_to_test):
     """
     Sends a URL to the prediction API and prints the result.
     """
-    api_url = 'https://phishing-detection-production-983e.up.railway.app/predict'
+    api_url = 'https://phishing-detection-api-new-test-production.up.railway.app/predict'
     params = {'url': url_to_test}
     
     try:
