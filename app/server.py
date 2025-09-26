@@ -236,9 +236,9 @@ app = FastAPI()
 
 # Load the trained model
 try:
-    model = joblib.load('app/phishing_gradient_boosting_model.joblib')
+    model = joblib.load('phishing_gradient_boosting_model.joblib')
 except FileNotFoundError:
-    print("Model file 'app/phishing_gradient_boosting_model.joblib' not found.")
+    print("Model file 'phishing_gradient_boosting_model.joblib' not found.")
     sys.exit(1)
 
 
