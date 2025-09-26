@@ -8,6 +8,7 @@ from datetime import datetime
 import dns.resolver
 import re
 import sys
+import os
 
 # --- Helper Functions ---
 
@@ -236,9 +237,10 @@ app = FastAPI()
 
 # Load the trained model
 try:
-    model = joblib.load('phishing_gradient_boosting_model.joblib')
+    model_path = os.path.join(os.path.dirname(__file__), 'phishing_gradient_boosting_model.joblib')
+    model = joblib.load(model_path)
 except FileNotFoundError:
-    print("Model file 'phishing_gradient_boosting_model.joblib' not found.")
+    print(f"Model file not found at {model_path}")
     sys.exit(1)
 
 
